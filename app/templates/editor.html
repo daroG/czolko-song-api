@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Edycja piosenek{% endblock %}
+{% block content %}
+<header class="bar">
+  <h1>Piosenki</h1>
+  <form method="post" action="/logout"><button type="submit">Wyloguj</button></form>
+</header>
+
+<form id="add-form" class="row">
+  <input name="author" placeholder="Wykonawca" required />
+  <input name="title" placeholder="Tytuł" required />
+  <button type="submit">Dodaj</button>
+</form>
+
+<p id="status" class="status"></p>
+<table id="songs">
+  <thead><tr><th>Wykonawca</th><th>Tytuł</th><th></th></tr></thead>
+  <tbody></tbody>
+</table>
+{% endblock %}
+{% block scripts %}<script src="/static/app.js"></script>{% endblock %}

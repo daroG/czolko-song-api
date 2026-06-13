@@ -1,0 +1,11 @@
+:root { font-family: system-ui, sans-serif; }
+body { margin: 0; padding: 1rem; max-width: 900px; margin-inline: auto; }
+.bar { display: flex; justify-content: space-between; align-items: center; }
+.row { display: flex; gap: .5rem; margin: 1rem 0; }
+.row input { flex: 1; padding: .4rem; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: .4rem; border-bottom: 1px solid #ddd; }
+td input { width: 100%; padding: .3rem; box-sizing: border-box; }
+button { padding: .4rem .8rem; cursor: pointer; }
+.error { color: #b00020; }
+.status { color: #555; min-height: 1.2em; }
