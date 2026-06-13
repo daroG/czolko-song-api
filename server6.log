@@ -1,7 +1,0 @@
-INFO:     Started server process [34596]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://[::]:8137 (Press CTRL+C to quit)
-INFO:     ::1:63567 - "GET /healthz HTTP/1.1" 200 OK
-INFO:     ::1:55513 - "GET /healthz HTTP/1.1" 200 OK
-INFO:     ::1:55514 - "GET /songs.json HTTP/1.1" 200 OK
