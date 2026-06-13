@@ -24,7 +24,9 @@ def init_db(engine) -> None:
     SQLModel.metadata.create_all(engine)
 
 
-def seed_if_empty(engine, seed_file: Path = DEFAULT_SEED) -> None:
+def seed_if_empty(engine, seed_file: Path | None = None) -> None:
+    # Resolve at call time (not as a default arg) so tests can monkeypatch DEFAULT_SEED.
+    seed_file = seed_file if seed_file is not None else DEFAULT_SEED
     with Session(engine) as session:
         if session.exec(select(Song).limit(1)).first() is not None:
             return
