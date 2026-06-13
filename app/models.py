@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from pydantic import field_validator
 from sqlmodel import Field, SQLModel
 
 
 def _utcnow() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 class Song(SQLModel, table=True):

@@ -11,7 +11,7 @@ class Settings:
     database_path: str
 
     @classmethod
-    def from_env(cls) -> "Settings":
+    def from_env(cls) -> Settings:
         missing = [k for k in ("EDIT_SECRET", "SESSION_SECRET") if not os.environ.get(k)]
         if missing:
             raise RuntimeError(
