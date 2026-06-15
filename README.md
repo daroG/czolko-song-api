@@ -50,26 +50,19 @@ uv run ruff format .
 | PUT    | `/api/songs/{id}`| yes  | Update a song                             |
 | DELETE | `/api/songs/{id}`| yes  | Delete a song                             |
 
-## Deployment (uvicorn + reverse proxy)
+## Deployment
+For a VPS (Mikrus, no Docker) there are ready-made scripts in [`deploy/`](deploy/) —
+a `systemd` unit plus a one-command helper. Full instructions are in
+[`deploy/DEPLOY.md`](deploy/DEPLOY.md). In short:
+
+```bash
+cp deploy/app.env.example deploy/app.env   # set PORT, EDIT_SECRET, SESSION_SECRET
+./deploy/manage.sh setup                   # install deps + systemd unit
+./deploy/manage.sh deploy                  # later: git pull + uv sync + restart
+```
+
 Run behind your existing reverse proxy on dgansty.pl; the proxy terminates TLS
 and should `listen [::]:443`. Persist the SQLite file via `DATABASE_PATH`.
-
-Example systemd unit:
-```ini
-[Unit]
-Description=czolko-songs-api
-After=network.target
-
-[Service]
-WorkingDirectory=/srv/czolko-songs-api
-Environment=DATABASE_PATH=/srv/czolko-songs-api/songs.db
-EnvironmentFile=/srv/czolko-songs-api/.env
-ExecStart=/usr/local/bin/uv run uvicorn app.main:app --host :: --port 8000
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-```
 
 ## Connecting the game
 Point `SONGS_JSON_URL` in the React Native app
