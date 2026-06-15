@@ -4,6 +4,7 @@ __pycache__/
 *.db
 *.db-journal
 .env
+deploy/app.env
 .pytest_cache/
 .ruff_cache/
 *.log

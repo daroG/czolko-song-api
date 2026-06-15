@@ -1,0 +1,20 @@
+[Unit]
+Description=Czolko Songs API (FastAPI/uvicorn)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=__USER__
+WorkingDirectory=__APPDIR__
+EnvironmentFile=__APPDIR__/deploy/app.env
+Environment=PYTHONUNBUFFERED=1
+# Single uvicorn worker — light enough for a tiny VPS (~30-50 MB RAM).
+# Bind :: (dual-stack) so Cloudflare can reach the origin over IPv6 — the
+# domain's AAAA record points here, and 0.0.0.0 (IPv4-only) would yield a 521.
+ExecStart=__UV__ run --no-sync uvicorn app.main:app --host :: --port ${PORT}
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
