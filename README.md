@@ -62,7 +62,9 @@ cp deploy/app.env.example deploy/app.env   # set PORT, EDIT_SECRET, SESSION_SECR
 ```
 
 Run behind your existing reverse proxy on dgansty.pl; the proxy terminates TLS
-and should `listen [::]:443`. Persist the SQLite file via `DATABASE_PATH`.
+(typically on `[::]:443`, the standard HTTPS port — set it to whatever your proxy
+uses) and forwards to this service's `PORT` (configured in `deploy/app.env`).
+Persist the SQLite file via `DATABASE_PATH`.
 
 ## Connecting the game
 Point `SONGS_JSON_URL` in the React Native app
